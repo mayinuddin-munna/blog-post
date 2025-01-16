@@ -52,7 +52,7 @@ export default function Home() {
   return (
     <div
       className="mx-auto relative max-w-screen-xl flex lg:mt-20 justify-center"
-      style={{ height: "82vh" }}
+      style={{ height: "70vh" }}
     >
       <div className="lg:grid grid-cols-3 gap-4 p-6 rounded-lg">
         <div className="lg:col-span-2 mr-4">
@@ -189,7 +189,7 @@ export default function Home() {
                 onClose={closePopup}
               >
                 <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-                  <div className="flex min-h-full items-center justify-center p-4">
+                  <div className="flex min-h-full backdrop-blur-sm bg-black/70 items-center justify-center p-4">
                     <DialogPanel className="w-full max-w-md bg-white rounded-lg shadow-lg p-6">
                       <div className="space-y-4">
                         <div className="space-y-2">
