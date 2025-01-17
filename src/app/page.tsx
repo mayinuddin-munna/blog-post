@@ -36,7 +36,7 @@ export default function Home() {
   // Render success screen if verification is successful
   if (verificationSuccess) {
     return (
-      <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4">
+      <div className="min-h-[72vh] bg-slate-900 flex items-center justify-center p-4">
         <div className="bg-white rounded-lg shadow-lg p-8 max-w-sm w-full flex flex-col items-center">
           <div className="w-16 h-16 rounded-full flex items-center justify-center border-2 border-emerald-600 text-emerald-600 mb-4">
             <FaCheck className="w-8 h-8" />
@@ -50,10 +50,7 @@ export default function Home() {
   }
 
   return (
-    <div
-      className="mx-auto relative max-w-screen-xl flex lg:mt-20 justify-center"
-      style={{ height: "70vh" }}
-    >
+    <div className="min-h-[65dvh] mx-auto max-w-screen-xl flex lg:mt-20 justify-center">
       <div className="lg:grid grid-cols-3 gap-4 p-6 rounded-lg">
         <div className="lg:col-span-2 mr-4">
           <div>
@@ -185,63 +182,81 @@ export default function Home() {
               <Dialog
                 open={isOpen}
                 as="div"
-                className="relative z-10 focus:outline-none"
+                className="relative z-10"
                 onClose={closePopup}
               >
-                <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-                  <div className="flex min-h-full backdrop-blur-sm bg-black/70 items-center justify-center p-4">
-                    <DialogPanel className="w-full max-w-md bg-white rounded-lg shadow-lg p-6">
-                      <div className="space-y-4">
-                        <div className="space-y-2">
-                          <h2 className="text-base font-medium text-gray-900">
-                            Device Verification
-                          </h2>
-                          <p className="text-sm text-gray-600">
-                            Please enter the verification code from your Google
-                            Authenticator app:
-                          </p>
+                <div className="fixed inset-0 bg-black/70 backdrop-blur-sm">
+                  <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+                    <div className="flex min-h-full items-center justify-center p-4">
+                      <DialogPanel className="w-full max-w-[520px] transform overflow-hidden  shadow-xl transition-all">
+                        <div>
+                          <form
+                            onSubmit={handleVerification}
+                            className="space-y-4"
+                          >
+                            <div className="space-y-2 bg-white p-6 lg:p-7">
+                              <h2 className="text-base font-semibold text-black">
+                                Device Verification 1/2
+                              </h2>
+                              <div className="space-y-4">
+                                <p className="text-base text-black">
+                                  Please enter a{" "}
+                                  <span className="font-semibold text-black">
+                                    Verification code
+                                  </span>{" "}
+                                  for EROSADS from your{" "}
+                                  <span className="font-semibold text-black">
+                                    Google Authenticator
+                                  </span>{" "}
+                                  app:
+                                </p>
+
+                                <div className="space-y-1">
+                                  <p className="text-xs text-amber-500">
+                                    Enter code here*
+                                  </p>
+                                  <input
+                                    type="text"
+                                    value={code}
+                                    onChange={(e) => setCode(e.target.value)}
+                                    className="w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-sm text-black placeholder-gray-400 focus:outline-none"
+                                    placeholder="_ _ _ _ _ _"
+                                  />
+                                </div>
+
+                                <p className="text-sm text-black">
+                                  Having trouble with receiving the Code, You
+                                  can contact the{" "}
+                                  <Link
+                                    href="#"
+                                    className="text-amber-500 hover:text-amber-600"
+                                  >
+                                    Support
+                                  </Link>
+                                  .
+                                </p>
+                              </div>
+                            </div>
+
+                            <div className="flex justify-end space-x-3 pt-4">
+                              <button
+                                type="button"
+                                onClick={closePopup}
+                                className="px-4 py-2 text-sm font-medium text-white  border border-white"
+                              >
+                                CANCEL
+                              </button>
+                              <button
+                                type="submit"
+                                className="px-4 py-2 text-sm font-medium text-amber-500 hover:text-amber-600 border border-amber-500"
+                              >
+                                VERIFY
+                              </button>
+                            </div>
+                          </form>
                         </div>
-
-                        <form
-                          onSubmit={handleVerification}
-                          className="space-y-4"
-                        >
-                          <input
-                            type="text"
-                            value={code}
-                            onChange={(e) => setCode(e.target.value)}
-                            className="w-full px-3 py-2 bg-gray-50 text-black border border-gray-300 rounded outline-none"
-                            placeholder="___ ___"
-                          />
-
-                          <p className="text-sm text-gray-600">
-                            Having trouble receiving the code?{" "}
-                            <Link
-                              href="/login"
-                              className="text-amber-600 hover:text-amber-700"
-                            >
-                              Contact Support
-                            </Link>
-                          </p>
-
-                          <div className="flex justify-end space-x-3">
-                            <button
-                              type="button"
-                              onClick={closePopup}
-                              className="text-gray-600 hover:text-gray-900"
-                            >
-                              CANCEL
-                            </button>
-                            <button
-                              type="submit"
-                              className="bg-gray-900 py-1 px-2 rounded text-white hover:bg-gray-800"
-                            >
-                              VERIFY
-                            </button>
-                          </div>
-                        </form>
-                      </div>
-                    </DialogPanel>
+                      </DialogPanel>
+                    </div>
                   </div>
                 </div>
               </Dialog>
